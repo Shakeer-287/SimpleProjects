@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Game</title>
+    <style>
+        #shape{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(178, 220, 159);
+            position: relative;
+            top: 50px;
+            left: 20px;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            background-color: aquamarine;
+        }
+        p{
+            font-size: 30px;
+        }
+        body{
+            background: linear-gradient(to right, rgb(175, 175, 227),white,rgb(242, 213, 213));
+        }
+        strong{
+            display: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speed Test</h1>
+    <h2>Click on the shape ASAP!!!</h2>
+    <p><b>Time: </b><span id="time"></span></p>
+    <p style="position: relative;top: -80px;left: 1280px;"><b>Best Time: </b><span id="best">0s</span></p>
+    <div id="err" style="display: none;"><strong>Currently, you are not responding. Try to continue the game.Thank you.</strong>
+    </div>
+    <div id="shape" onclick="change()"></div>
+    <script>
+        var tym1 = new Date().getTime();
+        var s = new Date().getSeconds();
+        document.getElementById("err").style.display="none";
+        var min=10000;
+        // document.getElementsByTagName("strong").style.display="block";
+        console.log(s);
+        if(s>10){
+            // alert("Entered");
+            document.getElementById("err").style.display="block";
+        }
+        var lf=0;
+        function change(){
+            document.getElementById("err").style.display="none";
+            var h,w,l,r,t;
+            var tym2 = new Date().getTime();
+            h = Math.max(Math.floor(Math.random()*250),Math.floor(Math.random()*300));
+            w = Math.max(Math.floor(Math.random()*300),Math.floor(Math.random()*330));
+            while(true){
+                l = Math.max(Math.floor(Math.random()*200),Math.floor(Math.random()*1000));
+                if(Math.abs(l-lf)>350){
+                    lf=l;
+                    break;
+                }
+
+            }
+            t = Math.max(Math.floor(Math.random()*180),Math.floor(Math.random()*190));
+            r = Math.floor(Math.random()*100);
+            document.getElementById("shape").style.backgroundColor=colour();
+            document.getElementById("shape").style.height=h+"px";
+            document.getElementById("shape").style.width=w+"px";
+            document.getElementById("shape").style.left=l+"px";
+            document.getElementById("shape").style.top=t+"px";
+            if(r>50){
+                document.getElementById("shape").style.borderRadius=r+"%";
+            }
+            else{
+                document.getElementById("shape").style.borderRadius=0+"%";
+            }
+            var tym = (tym2-tym1)/1000;
+            document.getElementById("time").innerHTML=tym+'s';
+            if(tym<min){
+                min=tym;
+                document.getElementById("best").innerHTML=min+'s';
+            }
+            // document.getElementsByTagName("strong").style.display="block";
+            tym1 = tym2;
+        }
+        function colour(){
+            var c="#";
+            for(var i=0;i<6;i++){
+                var j = Math.floor(Math.random()*10);
+                c+=j;
+            }
+            return c;
+        }
+    </script>
+</body>
+</html>
