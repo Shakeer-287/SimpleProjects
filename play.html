@@ -43,10 +43,8 @@
         var s = new Date().getSeconds();
         document.getElementById("err").style.display="none";
         var min=10000;
-        // document.getElementsByTagName("strong").style.display="block";
         console.log(s);
         if(s>10){
-            // alert("Entered");
             document.getElementById("err").style.display="block";
         }
         var lf=0;
@@ -83,7 +81,6 @@
                 min=tym;
                 document.getElementById("best").innerHTML=min+'s';
             }
-            // document.getElementsByTagName("strong").style.display="block";
             tym1 = tym2;
         }
         function colour(){
